@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <title>28_09_2023</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            width: 100%;
+            height: 100vh;
+        }
+
+        nav {
+            margin: 0 20px;
+            position: relative;
+            top: 10px;
+            display: flex;
+            justify-content: space-between;
+            /* background-color: rgb(104, 104, 138); */
+        }
+
+        .container_left img {
+            width: 35px;
+            mix-blend-mode: screen;
+            position: relative;
+            right: -70px;
+        }
+
+        .container_right ul {
+            display: flex;
+            justify-content: space-between;
+            position: relative;
+            right: -70px;
+        }
+
+        .container_right ul li,
+        a {
+            list-style: none;
+            color: crimson;
+            text-decoration: none;
+            font-weight: 600;
+            position: relative;
+            margin: 10px;
+            /* margin-left: 20px; */
+            /* right: -70px; */
+        }
+
+        .ul a::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -10px;
+            width: 100%;
+            height: 2px;
+            background: #ff0000;
+            border-radius: 5px;
+            transform: translateY(10px);
+            transition: .5s;
+            opacity: 0;
+        }
+
+        .ul a:hover::after{
+            transform: translateY(0);
+            opacity: 1;
+            /* background: rgb(214, 77, 77); */
+        }
+
+        .ul a:hover{
+            color: rgb(214, 77, 77);
+        }
+
+        .login_signup {
+            background: rgb(52, 52, 192);
+            color: #fff;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: .3s ease-in;
+            border: 1.5px solid greenyellow;
+            padding: 10px;
+            position: relative;
+            right: -190px;
+        }
+
+        .login_signup:hover {
+            background: rgb(65, 65, 250);
+            border: 1.5px solid blueviolet;
+        }
+
+        .responsive_bar {
+            font-size: 1.8rem;
+            position: relative;
+            top: 5px;
+            left: -50px;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <nav>
+            <div class="container_left">
+                <img src="1st.jpg" alt="">
+            </div>
+
+            <div class="container_right">
+                <ul class="ul">
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">About US</a></li>
+                    <li><a href="#">Products</a></li>
+                    <li><a href="#">Career</a></li>
+                    <li><a href="#">Contacts</a></li>
+                    <button type="button" class="login_signup">Login/SignUp</button>
+                </ul>
+            </div>
+            <div class="responsive_bar">
+                <i class="bi bi-border-width"></i>
+            </div>
+        </nav>
+    </header>
+</body>
+
+</html>
