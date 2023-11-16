@@ -52,7 +52,7 @@
             /* right: -70px; */
         }
 
-        .ul a::after {
+        .ul li a::after {
             content: '';
             position: absolute;
             left: 0;
@@ -66,13 +66,13 @@
             opacity: 0;
         }
 
-        .ul a:hover::after{
+        .ul li a:hover::after{
             transform: translateY(0);
             opacity: 1;
             /* background: rgb(214, 77, 77); */
         }
 
-        .ul a:hover{
+        .ul li a:hover{
             color: rgb(214, 77, 77);
         }
 
@@ -100,7 +100,7 @@
             background: rgb(65, 65, 250);
             border: 1.5px solid blueviolet;
             box-shadow:inset -4px -4px 8px rgba(0,0,0,0.5),
-                inset 4px 4px 8px rgba(255,255,255,0.5);
+                       inset 4px 4px 8px rgba(255,255,255,0.5);
         }
 
         .responsive_bar {
@@ -127,7 +127,7 @@
                     <li><a href="password_manager.html">Products</a></li>
                     <li><a href="stopwatch.html">Career</a></li>
                     <li><a href="generted_password.html">Contacts</a></li>
-                    <button type="button" class="login_signup"><a href="login_page_with_animated.html">Login/SignUp</a></button>
+                    <button class="login_signup"><a href="login_page_with_animated.html">Login/SignUp</a></button>
                 </ul>
             </div>
             <div class="responsive_bar ">
