@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up Form with CAPTCHA</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        .container {
+            width: 300px;
+            margin: auto;
+            margin-top: 50px;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            margin: 8px 0;
+            display: inline-block;
+            border: 1px solid #ccc;
+            box-sizing: border-box;
+        }
+
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 15px;
+            margin: 8px 0;
+            border: none;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        .captcha-container {
+            display: flex;
+            align-items: center;
+            margin-top: 10px;
+        }
+
+        #captcha {
+            width: 100px;
+            height: 36px;
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Sign Up</h2>
+    <form id="signupForm">
+        <input type="text" placeholder="Name" id="name" required>
+        <input type="tel" placeholder="Phone Number" id="phone" pattern="[0-9]{10}" required>
+        <input type="email" placeholder="Email" id="email" required>
+
+        <div class="captcha-container">
+            <img src="" alt="CAPTCHA" id="captcha">
+            <input type="text" placeholder="Enter CAPTCHA" id="captchaInput" required>
+        </div>
+
+        <button type="button" onclick="validateCaptcha()">Sign Up</button>
+    </form>
+</div>
+
+<script>
+    // Mock CAPTCHA generation (you should use a secure server-side solution in a real application)
+    function generateCaptcha() {
+        const captcha = Math.random().toString(36).substring(7);
+        document.getElementById('captcha').src = 'https://via.placeholder.com/100x36.png?text=' + captcha;
+        return captcha;
+    }
+
+    function validateCaptcha() {
+        const enteredCaptcha = document.getElementById('captchaInput').value;
+        const generatedCaptcha = document.getElementById('captcha').alt;
+
+        if (enteredCaptcha === generatedCaptcha) {
+            alert('CAPTCHA is valid. Sign Up successful!');
+            // Perform actual sign-up logic here
+        } else {
+            alert('CAPTCHA is invalid. Please try again.');
+            // Regenerate CAPTCHA
+            generateCaptcha();
+        }
+    }
+
+    // Initial CAPTCHA generation
+    generateCaptcha();
+</script>
+
+</body>
+</html>
