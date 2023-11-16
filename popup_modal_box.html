@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <title>Animated Pop Up Modal Box</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+        }
+
+        body {
+            overflow: hidden;
+        }
+
+        section {
+            position: relative;
+            height: 100vh;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        section .profile {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        section.show .profile {
+            display: none;
+        }
+
+        section .profile .profile-img {
+            height: 100px;
+            width: 100px;
+            border-radius: 50%;
+            background: #4070f4;
+            padding: 2px;
+            margin-bottom: 10px;
+        }
+
+        .profile .profile-img img {
+            height: 100%;
+            width: 100%;
+            object-fit: cover;
+            border-radius: 50%;
+            border: 2px solid #fff;
+        }
+
+        .profile .name,
+        .profile .profession {
+            font-size: 18px;
+            font-weight: 500;
+            color: #333;
+        }
+
+        .profile .profession {
+            font-weight: 400;
+            margin-top: -6px;
+        }
+
+        .profile .button {
+            display: flex;
+            align-items: center;
+            padding: 12px 20px;
+            background: #4070f4;
+            margin-top: 15px;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .profile .button:hover {
+            background: #275df1;
+        }
+
+        .profile .button:active {
+            transform: scale(0.97);
+        }
+
+        .profile .button i {
+            color: #fff;
+            font-size: 18px;
+            margin-right: 5px;
+        }
+
+        .profile .button button {
+            background: none;
+            outline: none;
+            border: none;
+            font-size: 20px;
+            color: #fff;
+            pointer-events: none;
+        }
+    </style>
+
+    <style>
+        section .popup-outer {
+            position: absolute;
+            height: 100%;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(0, 0, 0, 0.4);
+            opacity: 0;
+            pointer-events: none;
+            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+            transform: scale(1.2);
+            transition: opacity 0.2s 0s ease-in-out,
+                transform 0.2s 0s ease-in-out;
+        }
+
+        section.show .popup-outer {
+            opacity: 1;
+            pointer-events: auto;
+            transform: scale(1);
+        }
+
+        section .popup-box {
+            position: relative;
+            padding: 30px;
+            max-width: 380px;
+            width: 100%;
+            background: #fff;
+            border-radius: 12px;
+        }
+
+        .popup-box .close {
+            font-size: 24px;
+            position: absolute;
+            top: 16px;
+            right: 16px;
+            color: #b4b4b4;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .popup-box .close:hover {
+            color: #333;
+        }
+
+        section .popup-box .profile-text {
+            display: flex;
+            align-items: center;
+        }
+
+        section .popup-box img {
+            height: 60px;
+            width: 60px;
+            object-fit: cover;
+            border-radius: 50%;
+        }
+
+        .profile-text .text {
+            display: flex;
+            flex-direction: column;
+            margin-left: 15px;
+        }
+
+        .profile-text .text .name {
+            font-size: 14px;
+            font-weight: 400;
+        }
+
+        .profile-text .text .profession {
+            font-size: 12px;
+            font-weight: 500;
+        }
+
+        section .popup-box textarea {
+            min-height: 140px;
+            width: 100%;
+            margin-top: 20px;
+            outline: none;
+            border: 1px solid #ddd;
+            padding: 12px;
+            border-radius: 6px;
+            resize: none;
+            font-size: 14px;
+            font-weight: 400;
+            background: #f3f3f3;
+        }
+
+        section .popup-box .button {
+            display: flex;
+            justify-content: flex-end;
+            margin-top: 15px;
+        }
+
+        .popup-box .button button {
+            outline: none;
+            border: none;
+            padding: 6px 12px;
+            border-radius: 6px;
+            background: #6f93f6;
+            margin-left: 8px;
+            color: #fff;
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .button button.cancel {
+            background: #f082ac;
+        }
+
+        .button button.cancel:hover {
+            background: #ec5f95;
+        }
+
+        .button button.send:hover {
+            background: #275df1;
+        }
+
+        .button button.send:active {
+            transform: scale(0.98);
+        }
+
+        .button button.cancel:active {
+            transform: scale(0.98);
+        }
+        .popup-box img.close_img{
+            width: 27px;
+            height: 27px;
+            object-fit: cover;
+        }
+    </style>
+</head>
+
+<body>
+    <section>
+        <div class="profile">
+            <div class="profile-img">
+                <img src="Img/1.jpg" alt="">
+            </div>
+            <span class="name">Dipayan Baul</span>
+            <span class="profession">Web & Web Designer</span>
+            <div id="hireBtn" class="button">
+                <i class="bx bxs-envelope"></i>
+                <button>Hire Me</button>
+            </div>
+        </div>
+
+        <!-- PopUp Box Start -->
+        <div class="popup-outer">
+            <div class="popup-box">
+                <img id="closeBtn" src="Img/1.jpg" class="close close_img" alt="">
+                <i id="closeBtn" class="bx bx-x close"></i>
+                <div class="profile-text">
+                    <img src="Img/1.jpg" alt="">
+                    <div class="text">
+                        <span class="name">Dipayan Baul</span>
+                        <span class="profession">Web & Web Designer</span>
+                    </div>
+                </div>
+                <form action="#">
+                    <textarea placeholder="Enter Your Message"></textarea>
+                    <div class="button">
+                        <button id="closeBtn" class="cancel">Cancel</button>
+                        <button class="send">Send</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        const section = document.querySelector("section"),
+            hireBtn = section.querySelector("#hireBtn"),
+            closeBtn = section.querySelectorAll("#closeBtn");
+
+
+        hireBtn.addEventListener("click", () => {
+            section.classList.add("show");
+        });
+
+        closeBtn.forEach(cBtn => {
+            cBtn.addEventListener("click", () => {
+                section.classList.remove("show");
+            });
+        });
+    </script>
+</body>
+
+</html>
